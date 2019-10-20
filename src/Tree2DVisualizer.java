@@ -3,12 +3,12 @@ import com.myalgos.utils.RectHV;
 import com.myalgos.utils.StdDraw;
 import com.myalgos.utils.StdOut;
 
-public class KdTreeVisualizer {
+public class Tree2DVisualizer {
 
 	public static void main(String[] args) {
 		RectHV rect = new RectHV(0.0, 0.0, 1.0, 1.0);
 		StdDraw.enableDoubleBuffering();
-		KdTree kdtree = new KdTree();
+		Tree2D kdtree = new Tree2D();
 		while (true) {
 			if (StdDraw.isMousePressed()) {
 				double x = StdDraw.mouseX();

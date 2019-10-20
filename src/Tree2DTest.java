@@ -4,11 +4,11 @@ import java.util.Scanner;
 import com.myalgos.utils.Point2D;
 import com.myalgos.utils.RectHV;
 
-public class App {
+public class Tree2DTest {
 
 	public static void main(String[] args) {
 
-		KdTree kdtree = new KdTree();
+		Tree2D tree2d = new Tree2D();
 
 		System.out.println("Enter the number of points you want to add:");
 		Scanner in = new Scanner(System.in);
@@ -18,7 +18,7 @@ public class App {
 			double x = in.nextDouble();
 			double y = in.nextDouble();
 			Point2D p = new Point2D(x, y);
-			kdtree.insert(p);
+			tree2d.insert(p);
 			System.out.println("Point " + p.toString() + " added");
 		}
 
@@ -30,7 +30,7 @@ public class App {
 		System.out.println("Box (" + xmin + ", " + ymin + "), (" + xmax + ", " + ymax + ") set");
 
 		RectHV search_box = new RectHV(xmin, ymin, xmax, ymax);
-		LinkedList<Point2D> points_in_box = (LinkedList<Point2D>) kdtree.range(search_box);
+		LinkedList<Point2D> points_in_box = (LinkedList<Point2D>) tree2d.range(search_box);
 
 		System.out.println("Points in the box:");
 		for (Point2D point : points_in_box) {
@@ -43,11 +43,11 @@ public class App {
 		Point2D p_query = new Point2D(xquery, yquery);
 		System.out.println("Query point " + p_query.toString() + " entered");
 
-		Point2D p_nearest = kdtree.nearest(p_query);
+		Point2D p_nearest = tree2d.nearest(p_query);
 		System.out.println("The nearest point to " + p_query.toString() + " is " + p_nearest.toString());
 
 		in.close();
-		kdtree.draw();
+		tree2d.draw();
 
 	}
 

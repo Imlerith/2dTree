@@ -6,17 +6,17 @@ import com.myalgos.utils.StdDraw;
 
 
 
-public class KdTree {
+public class Tree2D {
 
-	private Node root;
+	private Node2D root;
 
-	private class Node {
-		private Node left, right;
+	private class Node2D {
+		private Node2D left, right;
 		private boolean split_is_vertical;
 		private double x;
 		private double y;
 
-		public Node(double x, double y, boolean split_is_vertical) {
+		public Node2D(double x, double y, boolean split_is_vertical) {
 			this.x = x;
 			this.y = y;
 			this.split_is_vertical = split_is_vertical;
@@ -27,7 +27,7 @@ public class KdTree {
 	private static final RectHV RECTANGLE = new RectHV(0.0, 0.0, 1.0, 1.0);
 
 	// construct an empty set of points
-	public KdTree() {
+	public Tree2D() {
 		N = 0;
 		root = null;
 	}
@@ -47,10 +47,10 @@ public class KdTree {
 		root = insert(root, p, true);
 	}
 
-	private Node insert(Node node, Point2D p, boolean split_is_vertical) {
+	private Node2D insert(Node2D node, Point2D p, boolean split_is_vertical) {
 		if (node == null) {
 			N++;
-			return new Node(p.x(), p.y(), split_is_vertical);
+			return new Node2D(p.x(), p.y(), split_is_vertical);
 		}
 
 		if (node.x == p.x() && node.y == p.y()) {
@@ -75,7 +75,7 @@ public class KdTree {
 		return contains(root, p.x(), p.y());
 	}
 
-	private boolean contains(Node node, double x, double y) {
+	private boolean contains(Node2D node, double x, double y) {
 		if (node == null) {
 			return false;
 		}
@@ -102,7 +102,7 @@ public class KdTree {
 		draw(root, RECTANGLE);
 	}
 
-	private void draw(Node node, RectHV rectangle) {
+	private void draw(Node2D node, RectHV rectangle) {
 		if (node == null)
 			return;
 
@@ -148,7 +148,7 @@ public class KdTree {
 		return points;
 	}
 
-	private void range(Node node, RectHV nrect, RectHV qrect, LinkedList<Point2D> points) {
+	private void range(Node2D node, RectHV nrect, RectHV qrect, LinkedList<Point2D> points) {
 		if (node == null)
 			return;
 		if (qrect.intersects(nrect)) {
@@ -179,7 +179,7 @@ public class KdTree {
 		return nearest(root, RECTANGLE, p.x(), p.y(), null);
 	}
 
-	private Point2D nearest(Node node, RectHV nrect, double x, double y, Point2D champion) {
+	private Point2D nearest(Node2D node, RectHV nrect, double x, double y, Point2D champion) {
 		if (node == null)
 			return champion;
 		double dist_to_champion = 0.0;
@@ -237,3 +237,4 @@ public class KdTree {
 	}
 
 }
+
